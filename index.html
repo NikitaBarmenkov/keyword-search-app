@@ -47,7 +47,7 @@
     <script src="https://unpkg.com/vue-material"></script>
     <script>;
         Vue.use(VueMaterial.default);
-        var HOST = location.origin.replace('https', 'ws');
+        var HOST = location.origin.replace('https', 'wss');
         var ws = new WebSocket(HOST);
         var app = new Vue({
             el: '#app',
