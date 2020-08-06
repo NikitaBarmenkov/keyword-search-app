@@ -1,16 +1,16 @@
 const express = require('express');
-const { Server } = require('ws');
+const http = require('http');
+const WebSocket = require('ws');
 
 const port = process.env.PORT || 3030;
 
-const server = express()
+const app = express()
 .get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
-})
-.listen(port, () => {
-  console.log('it\'s alive');
 });
-const wss = new Server({ server });
+
+const server = http.createServer(app);
+const wss = new WebSocket.Server({server});
 
 const vk = require('./vk');
 const reddit = require('./reddit');
@@ -33,3 +33,7 @@ async function GetData(data, ws) {
         break;
     }
 }
+
+server.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});
