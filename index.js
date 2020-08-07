@@ -9,7 +9,7 @@ const app = express()
   res.sendFile(__dirname + '/index.html');
 });
 
-const server = http.createServer(app);
+const server = http.Server(app);
 const wss = new WebSocket.Server({server});
 
 const vk = require('./vk');
