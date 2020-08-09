@@ -1,13 +1,15 @@
 const express = require('express');
 const http = require('http');
 const WebSocket = require('ws');
+const cors = require('cors');
 
 const port = process.env.PORT || 3030;
 
 const app = express()
 .get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
-});
+})
+.use(cors());
 
 const server = http.Server(app);
 const wss = new WebSocket.Server({server});
